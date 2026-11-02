@@ -58,3 +58,12 @@ html[data-theme=light] .text-link{color:#245fa3}
 .project-card:target{border-color:var(--soft);box-shadow:0 0 0 1px var(--dashed)}
 #rag-service{scroll-margin-top:22px}
 @media(max-width:520px){.founder-tag{display:inline}.chevron{margin-left:auto}}
+
+/* Pixel-art world and the bird that crosses it, both behind the content */
+.pixel-world,.pixel-sky{position:fixed;left:0;top:0;pointer-events:none;image-rendering:pixelated}
+.pixel-world{z-index:0}
+.pixel-sky{z-index:0}
+.pixel-world[hidden],.pixel-sky[hidden]{display:none}
+.page-frame{position:relative;z-index:1}
+.portfolio{background:transparent}
+@media(max-width:760px){.pixel-world{opacity:.45}}
