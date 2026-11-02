@@ -1,18 +1,27 @@
-# Portfolio template recreation
+# Tanner Bjorgan — portfolio
 
-A static recreation of the [Alex Walton reference portfolio](https://portfolio-template01-forgeuipro.vercel.app/). It uses plain HTML, CSS, and JavaScript, with no build step or runtime dependencies. The current names, work history, projects, contribution count, and links are demonstration content to replace during personalization.
+Static portfolio built with plain HTML, CSS, and JavaScript. It is designed for GitHub Pages and has no production dependencies or build step.
 
 ## Preview locally
 
-From this folder, run `python3 -m http.server 8000`, then visit `http://localhost:8000`.
+```sh
+python3 -m http.server 8000
+```
 
-## Customize
+Visit `http://127.0.0.1:8000/`. The contribution calendar is loaded from `contributions.json`, so the page should be served over HTTP rather than opened directly as a file.
 
-- Edit name, bio, contact links, and experience in `index.html`.
-- Edit project entries, skill list, and contribution grid in `script.js`.
-- Replace the images in `assets/` and update the copyright and page title.
-- The Resume button currently points to the reference site's resume. Replace it with your own `resume.pdf` before publishing.
+## Content
+
+- `index.html` contains the introduction, contact links, experience, and resume link.
+- `script.js` contains the project cards, skill logos, and page interactions.
+- `resume.pdf` is Tanner's software engineering resume.
+- `contributions.json` is a snapshot of the public GitHub profile's contribution calendar. It includes the activity GitHub makes publicly visible, which may exclude private work.
+- `scripts/update-contributions.py` fetches and validates the calendar. `.github/workflows/update-contributions.yml` refreshes it daily and can be run manually.
 
 ## GitHub Pages
 
-When this folder is in a GitHub repository, open **Settings → Pages**, choose **Deploy from a branch**, select the default branch and **/(root)**, then save. All asset paths are relative, so the site also works at a repository subpath.
+In the repository's **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/(root)`, then save. All local asset paths are relative, so the site works under a repository path.
+
+## Assets
+
+The technology logos under `assets/skills/` come from [Simple Icons](https://simpleicons.org/) (CC0), except the CloudFront icon, which comes from the [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) package via AWS Fundamentals. The profile image is Tanner's public GitHub avatar. The abstract gradient is retained from the reference template.
