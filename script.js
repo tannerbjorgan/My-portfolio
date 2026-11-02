@@ -43,9 +43,14 @@ const $ = (selector) => document.querySelector(selector);
 const html = document.documentElement;
 const savedTheme = localStorage.getItem('portfolio-theme');
 if (savedTheme === 'light' || savedTheme === 'dark') html.dataset.theme = savedTheme;
+let themeTransitionTimer;
 $('#theme-toggle').addEventListener('click', () => {
+  html.classList.add('theme-animating');
+  void html.offsetWidth;
   html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
   localStorage.setItem('portfolio-theme', html.dataset.theme);
+  clearTimeout(themeTransitionTimer);
+  themeTransitionTimer = setTimeout(() => html.classList.remove('theme-animating'), 350);
 });
 
 const avatarDialog = $('#avatar-dialog');

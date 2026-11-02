@@ -33,6 +33,9 @@ html[data-theme=light] .tool-mark img{filter:grayscale(1) brightness(0);opacity:
 @media(max-width:520px){.month-labels span:nth-child(odd){display:block}.project-card:last-child:nth-child(odd){grid-column:auto;display:block}.project-card:last-child:nth-child(odd) .project-card-info{padding-top:12px}.founder-tag{display:none}}
 
 /* Personal content, with the reference layout's decorative side rails removed. */
+:root{--outside:#1c1f23;--surface:#1c1f23;--text:#f5f6f7;--muted:#a4aab0;--soft:#c8cdd1;--line:#34383d;--dashed:#3a3e44;--pill:#292d32;--pill-border:#454a50;--cell0:#34383d;--cell1:#4b5259;--cell2:#707981;--cell3:#a0a7ad;--cell4:#d0d4d7}
+html[data-theme=light]{--outside:#fff;--surface:#fff;--text:#171717;--muted:#626970;--soft:#515960;--line:#e6e8ea;--dashed:#e5e7e9;--pill:#f8f9fa;--pill-border:#d9dde1}
+html.theme-animating *,html.theme-animating *::before,html.theme-animating *::after{transition:color .3s ease,background-color .3s ease,border-color .3s ease,fill .3s ease,stroke .3s ease}
 .page-frame{max-width:680px;padding:0;background:none}
 .portfolio{border:0}
 .round-button svg{display:block;width:16px;height:16px;stroke-linecap:round}
