@@ -2,20 +2,28 @@ const projects = [
   {
     name: 'Scribeist',
     url: 'https://scribeist.com',
+    image: 'assets/projects/scribeist.png',
+    imageAlt: 'Scribeist editor with Mythos character tracking',
     description: 'Writing platform with dedicated workspaces for books, blogs, research, and AI-assisted editing.'
   },
   {
     name: 'LogBook',
+    image: 'assets/projects/logbook.webp',
+    imageAlt: 'Equipment used by construction and mining crews',
     description: 'Offline-first equipment inspections and requests for mining and construction crews.'
   },
   {
     name: 'RAG Service',
+    id: 'rag-service',
+    image: 'assets/projects/rag-service.svg',
+    imageAlt: 'Diagram of vector and lexical retrieval feeding ranked evidence',
     description: 'Research retrieval pipeline that finds supporting passages and returns evidence-linked context for AI tools.'
   }
 ];
 
 const skills = [
   ['React', 'react.svg'],
+  ['TypeScript', 'typescript.svg'],
   ['Node.js', 'nodedotjs.svg'],
   ['Express', 'express.svg'],
   ['Docker', 'docker.svg'],
@@ -26,7 +34,9 @@ const skills = [
   ['GitHub', 'github.svg'],
   ['AWS S3', 'amazons3.svg'],
   ['Google Cloud', 'googlecloud.svg'],
-  ['CloudFront', 'amazoncloudfront.svg']
+  ['CloudFront', 'amazoncloudfront.svg'],
+  ['Claude Code', 'claude.svg'],
+  ['Codex', 'codex.png']
 ];
 
 const $ = (selector) => document.querySelector(selector);
@@ -54,8 +64,8 @@ document.querySelectorAll('.job-heading').forEach(button => button.addEventListe
 $('#project-grid').innerHTML = projects.map((project) => {
   const tag = project.url ? 'a' : 'article';
   const linkAttributes = project.url ? ` href="${project.url}" target="_blank" rel="noopener noreferrer"` : '';
-  return `<${tag} class="project-card"${linkAttributes}>
-    <img src="assets/gradient.jpg" alt="" loading="lazy" />
+  return `<${tag} class="project-card"${project.id ? ` id="${project.id}"` : ''}${linkAttributes}>
+    <img src="${project.image}" alt="${project.imageAlt}" loading="lazy" />
     <div class="project-card-info">
       <div class="project-name-row"><span class="project-name">${project.name}</span>${project.url ? '<span class="project-arrow" aria-hidden="true">↗</span>' : ''}</div>
       <p class="project-description">${project.description}</p>

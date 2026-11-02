@@ -24,4 +24,4 @@ In the repository's **Settings → Pages**, choose **Deploy from a branch**, sel
 
 ## Assets
 
-The technology logos under `assets/skills/` come from [Simple Icons](https://simpleicons.org/) (CC0), except the CloudFront icon, which comes from the [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) package via AWS Fundamentals. The profile image is Tanner's public GitHub avatar. The abstract gradient is retained from the reference template.
+The technology logos under `assets/skills/` come from [Simple Icons](https://simpleicons.org/) (CC0), except the CloudFront icon, which comes from the [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) package via AWS Fundamentals, and the Codex icon, which comes from the installed Codex app. The profile image is Tanner's public GitHub avatar. The outdoor pixel scene was generated for this portfolio. The Scribeist project card uses a product screenshot from Tanner's AppSumo assets, the LogBook card uses equipment imagery from that project's assets, and the RAG card is an architecture diagram drawn for this site.
