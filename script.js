@@ -2,21 +2,21 @@ const projects = [
   {
     name: 'Scribeist',
     url: 'https://scribeist.com',
-    image: 'assets/projects/scribeist.png',
-    imageAlt: 'Scribeist editor with Mythos character tracking',
+    image: 'assets/projects/scribeist-featured.png',
+    imageAlt: 'Scribeist main featured editor image',
     description: 'Writing platform with dedicated workspaces for books, blogs, research, and AI-assisted editing.'
   },
   {
     name: 'LogBook',
-    image: 'assets/projects/logbook.webp',
-    imageAlt: 'Equipment used by construction and mining crews',
+    image: 'assets/gradient.jpg',
+    imageAlt: '',
     description: 'Offline-first equipment inspections and requests for mining and construction crews.'
   },
   {
     name: 'RAG Service',
     id: 'rag-service',
-    image: 'assets/projects/rag-service.svg',
-    imageAlt: 'Diagram of vector and lexical retrieval feeding ranked evidence',
+    image: 'assets/gradient.jpg',
+    imageAlt: '',
     description: 'Research retrieval pipeline that finds supporting passages and returns evidence-linked context for AI tools.'
   }
 ];

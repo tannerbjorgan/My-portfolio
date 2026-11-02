@@ -21,6 +21,7 @@ footer{padding-top:23px;padding-bottom:27px;color:var(--muted);font:12px 'Geist 
 .calendar-cell.empty{visibility:hidden}
 .calendar-unavailable{grid-column:1/-1;color:var(--muted);font:11px 'Geist Mono',monospace}
 .contribution-count a:hover{text-decoration:underline;color:var(--text)}
+.job-logo-ubc{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:6px;background:#002145;color:#fff;font:700 13px Georgia,serif;letter-spacing:-1px}
 .job-heading img{background:var(--pill)}
 .project-card:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:center}
 .project-card:last-child:nth-child(odd) .project-card-info{padding-top:0}
@@ -31,38 +32,16 @@ html[data-theme=light] .tool-mark img{filter:grayscale(1) brightness(0);opacity:
 @media(max-width:760px){.month-labels span:nth-child(even){display:block}}
 @media(max-width:520px){.month-labels span:nth-child(odd){display:block}.project-card:last-child:nth-child(odd){grid-column:auto;display:block}.project-card:last-child:nth-child(odd) .project-card-info{padding-top:12px}.founder-tag{display:none}}
 
-/* Outdoor scene and the personal details layered over the original layout. */
-:root{--muted:#a5aaad;--soft:#c7ccce}
-html[data-theme=light]{--muted:#566064;--soft:#394348}
-body{background:#0a171c url('assets/pixel-outdoors.png') center center/cover fixed no-repeat}
-.page-frame{background:linear-gradient(90deg,rgba(5,14,18,.86),rgba(5,14,18,.7) 50%,rgba(5,14,18,.86))}
-html[data-theme=light] .page-frame{background:linear-gradient(90deg,rgba(236,244,242,.82),rgba(236,244,242,.64) 50%,rgba(236,244,242,.82))}
-.hero{position:relative;isolation:isolate;overflow:hidden;min-height:282px;padding-top:165px;align-items:flex-end}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(5,12,16,.96),rgba(5,12,16,.72) 33%,rgba(5,12,16,.08) 100%),url('assets/pixel-outdoors.png') center 46%/cover no-repeat}
-html[data-theme=light] .hero::before{background:linear-gradient(to top,rgba(250,250,250,.94),rgba(250,250,250,.71) 31%,rgba(250,250,250,.04) 100%),url('assets/pixel-outdoors.png') center 46%/cover no-repeat}
-.hero-title,.hero-actions,.avatar-button{position:relative;z-index:1}
-.avatar-button,.avatar{width:68px;height:68px}
-.avatar{border:2px solid rgba(255,255,255,.75);box-shadow:0 4px 18px #0008}
-.hero-actions{align-self:flex-end}
-.round-button{display:inline-flex;align-items:center;justify-content:center}
+/* Personal content, with the reference layout's decorative side rails removed. */
+.page-frame{max-width:680px;padding:0;background:none}
+.portfolio{border:0}
 .round-button svg{display:block;width:16px;height:16px;stroke-linecap:round}
 .email-pill-icon{display:block;flex:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.bio p{text-align:left}
 .inline-logo{display:inline-block;width:15px;height:15px;vertical-align:-2px;margin:0 2px 0 3px;object-fit:contain}
-.job-logo-hexagon{width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;gap:1px;border-radius:6px;background:#14222a;color:#e8f5f7;font:700 17px Arial,sans-serif}
-.tags span{display:inline-flex;align-items:center;gap:5px;color:var(--text)}
+.tags span{display:inline-flex;align-items:center;gap:5px}
 .tags img{display:block;width:13px;height:13px;object-fit:contain;flex:none}
-.text-link{color:#8fc6fa;text-decoration:underline;text-underline-offset:2px}
-.text-link:hover{color:#c6e6ff}
+.text-link{color:#9bc8f7;text-decoration:underline;text-underline-offset:2px}
 html[data-theme=light] .text-link{color:#245fa3}
-.job[data-job=hexagon] .job-details ul{margin-top:4px}
-.project-card img{background:#14232a}
-.project-card:target{border-color:#8fa9ff;box-shadow:0 0 0 1px #8fa9ff55}
+.project-card:target{border-color:var(--soft);box-shadow:0 0 0 1px var(--dashed)}
 #rag-service{scroll-margin-top:22px}
-.tool-mark{filter:none;opacity:1}
-.tool-mark img{filter:none;opacity:1}
-html[data-theme=light] .tool-mark img{filter:none;opacity:1}
-.tool-mark img[src$="codex.png"]{border-radius:7px}
-html[data-theme=light] .tool-mark img[src$="express.svg"],html[data-theme=light] .tool-mark img[src$="github.svg"],html[data-theme=light] .tool-mark img[src$="prisma.svg"]{filter:brightness(0)}
-@media(max-width:760px){.hero{min-height:264px;padding-top:155px}}
-@media(max-width:520px){body{background-position:38% center}.page-frame,html[data-theme=light] .page-frame{background:transparent}.hero{min-height:250px;padding-top:142px}.hero::before,html[data-theme=light] .hero::before{background-position:30% 45%}.hero-title h1{font-size:27px}.avatar-button,.avatar{width:60px;height:60px}.chevron{margin-left:auto}}
+@media(max-width:520px){.founder-tag{display:inline}.chevron{margin-left:auto}}
