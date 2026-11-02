@@ -1,12 +1,11 @@
 import { GITHUB_USERNAME, experience, projects, tools } from './content.js';
 import { renderExperience, renderProjects, renderTools } from './sections.js';
 import { loadContributions } from './contributions.js';
-import { initThemeToggle } from './theme.js';
-import { startScene } from './scene/index.js';
+import { initShell } from './shell.js';
 
 const $ = (selector) => document.querySelector(selector);
 
-initThemeToggle($('#theme-toggle'));
+initShell();
 
 const avatarDialog = $('#avatar-dialog');
 $('#avatar-button').addEventListener('click', () => avatarDialog.showModal());
@@ -23,10 +22,4 @@ loadContributions(GITHUB_USERNAME, {
   calendar: $('#calendar'),
   months: $('#month-labels'),
   count: $('#contribution-count')
-});
-
-startScene({
-  world: $('#scene-world'),
-  sky: $('#scene-sky'),
-  column: $('.page')
 });

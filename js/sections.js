@@ -1,11 +1,12 @@
 import { technologies } from './content.js';
 
-const escape = (text) => text.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
+export const escape = (text) => text.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
 
 const icon = (name) => `assets/skills/${technologies[name]}`;
 
-function techTag(name) {
-  return `<span class="tag"><img src="${icon(name)}" alt="" />${escape(name)}</span>`;
+export function techTag(name) {
+  const image = technologies[name] ? `<img src="${icon(name)}" alt="" />` : '';
+  return `<span class="tag">${image}${escape(name)}</span>`;
 }
 
 function jobLogo(logo) {
@@ -37,21 +38,17 @@ export function renderExperience(container, jobs) {
   });
 }
 
+export const projectUrl = (project) => `project.html?p=${encodeURIComponent(project.slug)}`;
+
 export function renderProjects(container, projects) {
-  container.innerHTML = projects.map((project) => {
-    const tag = project.url ? 'a' : 'article';
-    const id = project.id ? ` id="${project.id}"` : '';
-    const link = project.url ? ` href="${project.url}" target="_blank" rel="noopener noreferrer"` : '';
-    const arrow = project.url ? '<span class="project-arrow" aria-hidden="true">↗</span>' : '';
-    return `
-      <${tag} class="project-card"${id}${link}>
-        <img src="${project.image}" alt="${escape(project.imageAlt ?? '')}" loading="lazy" />
-        <div class="project-card-info">
-          <div class="project-name-row"><span>${escape(project.name)}</span>${arrow}</div>
-          <p class="project-description">${escape(project.description)}</p>
-        </div>
-      </${tag}>`;
-  }).join('');
+  container.innerHTML = projects.map((project) => `
+    <a class="project-card" href="${projectUrl(project)}">
+      <img src="${project.image}" alt="${escape(project.imageAlt ?? '')}" loading="lazy" />
+      <div class="project-card-info">
+        <div class="project-name-row"><span>${escape(project.name)}</span><span class="project-arrow" aria-hidden="true">→</span></div>
+        <p class="project-description">${escape(project.description)}</p>
+      </div>
+    </a>`).join('');
 }
 
 export function renderTools(track, names) {

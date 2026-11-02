@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Project — Tanner Bjorgan</title>
+    <link rel="icon" href="assets/avatar.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      try {
+        const saved = localStorage.getItem('portfolio-theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch {}
+    </script>
+    <script type="module" src="js/project.js"></script>
+  </head>
+  <body>
+    <canvas class="scene-layer" id="scene-world" aria-hidden="true" hidden></canvas>
+    <canvas class="scene-layer" id="scene-sky" aria-hidden="true" hidden></canvas>
+
+    <main class="page">
+      <nav class="top-bar section" aria-label="Site">
+        <a class="back-link" href="./#projects">← All projects</a>
+        <button class="round-button theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <span class="moon" aria-hidden="true">◕</span>
+          <span class="sun" aria-hidden="true">☀</span>
+        </button>
+      </nav>
+
+      <article id="project"></article>
+
+      <footer class="footer section">
+        <p>© 2026 Tanner Bjorgan. All rights reserved.</p>
+      </footer>
+    </main>
+  </body>
+</html>
