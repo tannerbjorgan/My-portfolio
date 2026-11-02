@@ -43,14 +43,30 @@ const $ = (selector) => document.querySelector(selector);
 const html = document.documentElement;
 const savedTheme = localStorage.getItem('portfolio-theme');
 if (savedTheme === 'light' || savedTheme === 'dark') html.dataset.theme = savedTheme;
-let themeTransitionTimer;
+let themeSwitchInProgress = false;
 $('#theme-toggle').addEventListener('click', () => {
-  html.classList.add('theme-animating');
-  void html.offsetWidth;
-  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('portfolio-theme', html.dataset.theme);
-  clearTimeout(themeTransitionTimer);
-  themeTransitionTimer = setTimeout(() => html.classList.remove('theme-animating'), 350);
+  if (themeSwitchInProgress) return;
+  const nextTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  const applyTheme = () => {
+    html.dataset.theme = nextTheme;
+    localStorage.setItem('portfolio-theme', nextTheme);
+  };
+
+  if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    applyTheme();
+    return;
+  }
+
+  themeSwitchInProgress = true;
+  html.classList.add('theme-switching');
+  const transition = document.startViewTransition(applyTheme);
+  transition.finished.then(() => {
+    themeSwitchInProgress = false;
+    html.classList.remove('theme-switching');
+  }, () => {
+    themeSwitchInProgress = false;
+    html.classList.remove('theme-switching');
+  });
 });
 
 const avatarDialog = $('#avatar-dialog');

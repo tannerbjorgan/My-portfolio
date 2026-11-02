@@ -35,9 +35,12 @@ html[data-theme=light] .tool-mark img{filter:grayscale(1) brightness(0);opacity:
 /* Personal content, with the reference layout's decorative side rails removed. */
 :root{--outside:#161514;--surface:#161514;--text:#e8e6e2;--muted:#9b9892;--soft:#c8c5be;--line:#34322f;--dashed:#3e3c39;--pill:#2a2825;--pill-border:#484540;--cell0:#353330;--cell1:#4a4742;--cell2:#6a665f;--cell3:#918b82;--cell4:#c8c5be}
 html[data-theme=light]{--outside:#fff;--surface:#fff;--text:#171717;--muted:#626970;--soft:#515960;--line:#e6e8ea;--dashed:#e5e7e9;--pill:#f8f9fa;--pill-border:#d9dde1}
-html.theme-animating body,html.theme-animating .portfolio{transition:background-color .3s ease,color .3s ease}
-html.theme-animating .hero-title p,html.theme-animating .bio,html.theme-animating .bio strong,html.theme-animating .section-title,html.theme-animating .section-title em,html.theme-animating .job-main,html.theme-animating .job-main em,html.theme-animating .job-meta,html.theme-animating .job-details,html.theme-animating .job-details strong,html.theme-animating .project-name,html.theme-animating .project-description,html.theme-animating .tool-name,html.theme-animating .contribution-count,html.theme-animating footer{transition:color .3s ease}
-html.theme-animating .pill,html.theme-animating .round-button,html.theme-animating .tags span{transition:color .3s ease,background-color .3s ease,border-color .3s ease}
+html.theme-switching .marquee-track{animation-play-state:paused}
+@keyframes theme-fade-out{to{opacity:0}}
+@keyframes theme-fade-in{from{opacity:0}}
+::view-transition-old(root){animation:220ms ease-in-out both theme-fade-out}
+::view-transition-new(root){animation:220ms ease-in-out both theme-fade-in}
+@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation-duration:.01ms!important}}
 #theme-toggle{position:relative}
 #theme-toggle .moon,#theme-toggle .sun{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .3s ease}
 #theme-toggle .sun{opacity:0}
