@@ -17,12 +17,12 @@ jobs:
         run: python3 scripts/update-contributions.py
       - name: Commit updated calendar
         run: |
-          if git diff --quiet -- contributions.json; then
+          if git diff --quiet -- data/contributions.json; then
             echo "Calendar is already current"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add contributions.json
+          git add data/contributions.json
           git commit -m "Update contribution calendar"
           git push

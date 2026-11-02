@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the public GitHub contribution calendar used by this static site."""
+"""Refresh the saved copy of the public GitHub contribution calendar (data/contributions.json)."""
 
 import argparse
 import json
@@ -57,7 +57,7 @@ def main() -> None:
         with urlopen(request, timeout=30) as response:
             source = response.read().decode("utf-8")
     data = parse_calendar(source)
-    destination = ROOT / "contributions.json"
+    destination = ROOT / "data" / "contributions.json"
     destination.write_text(json.dumps(data, indent=2) + "\n")
     print(f"Updated {destination.name}: {data['total']} contributions through {data['through']}")
 

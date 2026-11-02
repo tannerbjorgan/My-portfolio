@@ -1,0 +1,901 @@
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@font-face {
+  font-family: Geist;
+  src: url('../assets/fonts/geist.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../assets/fonts/geist-mono.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../assets/fonts/jetbrains-mono.woff2') format('woff2');
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('../assets/fonts/instrument-serif.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   Theme tokens
+   ========================================================================== */
+
+:root {
+  --bg: #161514;
+  --text: #e8e6e2;
+  --muted: #9b9892;
+  --soft: #c8c5be;
+  --dashed: #3e3c39;
+  --pill: #2a2825;
+  --pill-border: #484540;
+  --link: #9bc8f7;
+  --cell-0: #353330;
+  --cell-1: #4a4742;
+  --cell-2: #6a665f;
+  --cell-3: #918b82;
+  --cell-4: #c8c5be;
+  --icon-filter: grayscale(1) brightness(0) invert(1);
+  --icon-opacity: 0.7;
+
+  --font-sans: Geist, Arial, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-code: 'JetBrains Mono', 'Geist Mono', monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #fff;
+  --text: #171717;
+  --muted: #626970;
+  --soft: #515960;
+  --dashed: #e5e7e9;
+  --pill: #f8f9fa;
+  --pill-border: #d9dde1;
+  --link: #245fa3;
+  --cell-0: #ebebeb;
+  --cell-1: #d4d4d4;
+  --cell-2: #a3a3a3;
+  --cell-3: #737373;
+  --cell-4: #404040;
+  --icon-filter: grayscale(1) brightness(0);
+  --icon-opacity: 0.58;
+
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 var(--font-sans);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  min-height: 100vh;
+  margin: auto;
+}
+
+.section {
+  padding: 24px 13px;
+  border-bottom: 1px dashed var(--dashed);
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.section-title em {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Shared components
+   ========================================================================== */
+
+.round-button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px dashed var(--pill-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--soft);
+  cursor: pointer;
+}
+
+.round-button:hover {
+  border-color: var(--soft);
+  color: var(--text);
+}
+
+.round-button svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 27px;
+  padding: 0 10px;
+  border: 1px solid var(--pill-border);
+  border-radius: 8px;
+  background: var(--pill);
+  box-shadow: inset 0 1px rgb(255 255 255 / 3.5%);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.pill:hover {
+  border-color: var(--soft);
+  transform: translateY(-1px);
+}
+
+.pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1;
+  fill: currentColor;
+}
+
+.pill-icon--stroke {
+  display: block;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pill-icon--linkedin {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--muted);
+  border-radius: 2px;
+  font: bold 10px Arial, sans-serif;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 7px;
+  border: 1px solid var(--pill-border);
+  border-radius: 5px;
+  background: var(--pill);
+  color: var(--soft);
+  font: 10px var(--font-mono);
+}
+
+.tag img {
+  display: block;
+  flex: none;
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+}
+
+.inline-logo {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 2px 0 3px;
+  vertical-align: -2px;
+  object-fit: contain;
+}
+
+.text-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 197px;
+  padding-top: 103px;
+  padding-bottom: 28px;
+}
+
+.avatar-button {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.avatar {
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.hero-title h1 {
+  margin: 0 0 8px;
+  font: 400 30px/1 var(--font-serif);
+  letter-spacing: -0.5px;
+}
+
+.hero-title p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.hero-role {
+  letter-spacing: 1px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.theme-toggle {
+  position: relative;
+}
+
+.theme-toggle span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle .sun,
+:root[data-theme='light'] .theme-toggle .moon {
+  opacity: 0;
+}
+
+:root[data-theme='light'] .theme-toggle .sun {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   About and contact
+   ========================================================================== */
+
+.bio {
+  padding-bottom: 25px;
+  color: var(--muted);
+}
+
+.bio p {
+  margin: 0 0 17px;
+  text-align: justify;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
+}
+
+.bio strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.contact {
+  padding-bottom: 23px;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+/* ==========================================================================
+   Contribution calendar
+   ========================================================================== */
+
+.contributions {
+  padding-top: 25px;
+  padding-bottom: 39px;
+}
+
+.contributions .section-title {
+  margin-bottom: 12px;
+}
+
+.calendar-wrap {
+  width: 100%;
+  overflow: hidden;
+}
+
+.month-labels,
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(53, minmax(0, 1fr));
+}
+
+.month-labels {
+  margin: 0 2px 5px;
+  color: var(--muted);
+  font: 10px/1.4 var(--font-mono);
+}
+
+.month-labels span {
+  white-space: nowrap;
+}
+
+.calendar {
+  grid-template-rows: repeat(7, 10px);
+  grid-auto-flow: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.calendar-cell {
+  min-width: 0;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--cell-0);
+}
+
+.calendar-cell[data-level='1'] { background: var(--cell-1); }
+.calendar-cell[data-level='2'] { background: var(--cell-2); }
+.calendar-cell[data-level='3'] { background: var(--cell-3); }
+.calendar-cell[data-level='4'] { background: var(--cell-4); }
+
+.calendar-cell:hover {
+  outline: 1px solid var(--text);
+  outline-offset: 1px;
+}
+
+.calendar-cell.is-empty {
+  visibility: hidden;
+}
+
+.calendar-unavailable {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font: 11px var(--font-mono);
+}
+
+.contribution-count {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font: 10px/1.5 var(--font-mono);
+}
+
+.contribution-count a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Experience
+   ========================================================================== */
+
+.experience {
+  padding-bottom: 12px;
+}
+
+.experience-list {
+  display: grid;
+  gap: 12px;
+}
+
+.job {
+  border: 1px dashed var(--dashed);
+}
+
+.job-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.job-heading:hover {
+  background: var(--pill);
+}
+
+.job-logo {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--pill);
+  object-fit: cover;
+}
+
+.job-logo--text {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font: 700 13px Georgia, serif;
+  letter-spacing: -1px;
+}
+
+.job-main {
+  display: grid;
+  min-width: 0;
+}
+
+.job-main strong {
+  font-weight: 450;
+}
+
+.job-main em {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.job-meta {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.job-meta small {
+  display: block;
+  font-size: 10px;
+}
+
+.chevron {
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.job-heading[aria-expanded='true'] .chevron {
+  transform: rotate(90deg);
+}
+
+.job-details {
+  padding: 0 12px 11px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.job-details .tag-list {
+  padding-top: 11px;
+  border-top: 1px dashed var(--dashed);
+}
+
+.job-details ul {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding-left: 14px;
+}
+
+.job-details li::marker {
+  color: var(--soft);
+}
+
+.job-details strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Projects
+   ========================================================================== */
+
+.projects .section-title {
+  margin-bottom: 17px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px 16px;
+}
+
+.project-card {
+  display: block;
+  min-width: 0;
+  padding: 8px;
+  border: 1px dashed var(--dashed);
+  scroll-margin-top: 22px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+a.project-card:hover {
+  border-color: var(--soft);
+  transform: translateY(-2px);
+}
+
+.project-card:target {
+  border-color: var(--soft);
+  box-shadow: 0 0 0 1px var(--dashed);
+}
+
+.project-card img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.project-card-info {
+  padding-top: 12px;
+}
+
+.project-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-arrow {
+  color: var(--muted);
+}
+
+.project-description {
+  min-height: 31px;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font: 12px/1.3 var(--font-code);
+}
+
+/* An odd final card spans the full row with its image beside the text. */
+.project-card:last-child:nth-child(odd) {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.project-card:last-child:nth-child(odd) .project-card-info {
+  padding-top: 0;
+}
+
+/* ==========================================================================
+   Tools marquee
+   ========================================================================== */
+
+.tools {
+  padding-bottom: 25px;
+  overflow: hidden;
+}
+
+.tools .section-title {
+  margin-bottom: 30px;
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.marquee:hover .marquee-track,
+.theme-switching .marquee-track {
+  animation-play-state: paused;
+}
+
+.tool {
+  display: grid;
+  flex: none;
+  justify-items: center;
+  gap: 8px;
+  width: 105px;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tool img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: var(--icon-filter);
+  opacity: calc(var(--icon-opacity) * 0.75);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   Footer and avatar dialog
+   ========================================================================== */
+
+.footer {
+  padding-top: 23px;
+  padding-bottom: 27px;
+  color: var(--muted);
+  font: 12px var(--font-mono);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.avatar-dialog {
+  padding: 12px;
+  border: 1px solid var(--dashed);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 20px 60px #0008;
+}
+
+.avatar-dialog::backdrop {
+  background: #000b;
+  backdrop-filter: blur(5px);
+}
+
+.avatar-dialog img {
+  display: block;
+  width: min(70vw, 360px);
+  height: auto;
+  border-radius: 8px;
+}
+
+.avatar-dialog button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: #111b;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Pixel-art scene
+   ========================================================================== */
+
+.scene-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+.scene-layer[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Theme transition
+   ========================================================================== */
+
+@keyframes theme-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(root) {
+  animation: 220ms ease-in-out both theme-fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 220ms ease-in-out both theme-fade-in;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 72px;
+  }
+
+  .contributions {
+    padding-bottom: 34px;
+  }
+
+  .calendar {
+    grid-template-rows: repeat(7, 9px);
+  }
+
+  .calendar-cell {
+    height: 9px;
+  }
+
+  .project-card img {
+    height: 150px;
+  }
+
+  .scene-layer {
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 520px) {
+  .section {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .hero {
+    min-height: 164px;
+  }
+
+  .hero-title h1 {
+    font-size: 28px;
+  }
+
+  .bio {
+    line-height: 1.48;
+  }
+
+  .contributions {
+    padding-bottom: 35px;
+  }
+
+  .month-labels,
+  .calendar {
+    width: 644px;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(53, 10px);
+    grid-template-rows: repeat(7, 10px);
+    gap: 2.2px;
+  }
+
+  .calendar-cell {
+    height: 10px;
+  }
+
+  .job-meta {
+    display: none;
+  }
+
+  .chevron {
+    margin-left: auto;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .project-card img {
+    height: 160px;
+  }
+
+  .project-card:last-child:nth-child(odd) {
+    display: block;
+    grid-column: auto;
+  }
+
+  .project-card:last-child:nth-child(odd) .project-card-info {
+    padding-top: 12px;
+  }
+
+  .tools .section-title {
+    margin-bottom: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
